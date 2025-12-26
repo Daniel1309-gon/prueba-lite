@@ -1,0 +1,7 @@
+.env
+frontend/node_modules
+backend/__pycache__/
+.devcontainer/
+.vscode/
+docker-compose.yml
+backend/test-lite

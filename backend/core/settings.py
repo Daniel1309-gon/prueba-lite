@@ -135,7 +135,6 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
-    # Por defecto, todo requiere autenticación (luego abriremos lo necesario)
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ],
@@ -149,6 +148,5 @@ SIMPLE_JWT = {
     'AUTH_HEADER_TYPES': ('Bearer',),
 }
 
-# EMAIL CONFIGURATION
-# En producción usaríamos 'django.core.mail.backends.smtp.EmailBackend'
+
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'

@@ -30,3 +30,8 @@ export const sendInventarioEmail = async (email: string) => {
     const response = await client.post('/productos/inventario_pdf/', { email });
     return response.data;
 }
+
+export const generateDescriptionAI = async (nombre: string) => {
+    const response = await client.post('productos/generar_descripcion/', { nombre });
+    return response.data.descripcion;
+}

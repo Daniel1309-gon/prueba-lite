@@ -13,9 +13,7 @@ const LoginPage = () => {
     e.preventDefault();
     try {
       await login(username, password);
-      // Si funciona, ir a la página principal
       navigate('/'); 
-      // Recargar la página para que se actualicen los estados de autenticación
       window.location.reload(); 
     } catch (error) {
       alert('Credenciales inválidas');
@@ -26,7 +24,7 @@ const LoginPage = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
-        <h2 className="text-2xl font-bold mb-6 text-center text-blue-600">Iniciar Sesión</h2>
+        <h2 className="text-2xl font-bold mb-6 text-center text-blue-600">Iniciar sesión</h2>
         <form onSubmit={handleSubmit}>
           <FormField 
             label="Usuario / Correo" 

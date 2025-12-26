@@ -9,7 +9,8 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import letter
-import io
+import io, os
+from google import genai
 
 class ProductoViewSet(viewsets.ModelViewSet):
     queryset = Producto.objects.all()
@@ -63,3 +64,38 @@ class ProductoViewSet(viewsets.ModelViewSet):
                 return Response({'mensaje': 'Correo enviado exitosamente.'})
             except Exception as e:
                 return Response({'error': f'Error al enviar el correo: {str(e)}'}, status=500)
+    
+    @action(detail=False, methods=['post'], url_path='generar_descripcion')
+    def generar_descripcion(self, request):
+        nombre_producto  = request.data.get('nombre')
+
+        if not nombre_producto:
+            return Response({'error': 'Se requiere el nombre del producto.'}, status=400)
+
+        api_key = os.getenv('GEMINI_API_KEY')
+
+
+        if api_key:
+
+            try:
+                client = genai.Client(api_key=api_key)
+                prompt = (
+                    f'Eres un experto en copywriting de productos.'
+                    f'Genera una descripción atractiva y concisa para el siguiente producto: {nombre_producto}.'
+                    f'(máximo 200 caracteres)'
+                    f'Dame solo el texto, sin instrucciones adicionales.'
+                )
+
+                response = client.models.generate_content(
+                    model="gemini-2.5-flash",
+                    contents = prompt
+                )
+
+                descripcion = response.text.strip()
+                return Response({'descripcion': descripcion})
+            
+            except Exception as e:
+                print(e)
+                return Response({'error': f'Error al conectar con Gemini: {str(e)}'}, status=500)
+        
+        return Response({'error': 'La clave de API de Gemini no está configurada.'}, status=500)

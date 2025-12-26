@@ -27,7 +27,7 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen bg-gray-50">
-        {/* Navbar solo si está autenticado */}
+
         {isAuth && (
           <nav className="bg-white shadow-sm">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -43,7 +43,7 @@ function App() {
                   </div>
                 </div>
                 <div className="flex items-center">
-                  <button onClick={handleLogout} className="text-sm text-red-600 hover:text-red-800 font-medium">Cerrar Sesión</button>
+                  <button onClick={handleLogout} className="text-sm text-red-600 hover:text-red-800 font-medium">Cerrar sesión</button>
                 </div>
               </div>
             </div>
@@ -53,8 +53,7 @@ function App() {
         <div className="py-10">
           <Routes>
             <Route path="/login" element={<LoginPage />} />
-            
-            {/* Rutas Protegidas */}
+          
             <Route path="/" element={
               <PrivateRoute><EmpresaPage /></PrivateRoute>
             } />

@@ -20,13 +20,13 @@ const EmpresaPage = () => {
   return (
     <div className="min-h-screen py-10 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-3xl font-extrabold text-gray-900 mb-8 text-center">Gestión de Empresas</h1>
+        <h1 className="text-3xl font-extrabold text-gray-900 mb-8 text-center">Gestión de empresas</h1>
         
         {isAdmin() && (
         <EmpresaForm onSuccess={cargarEmpresas} />
         )}
         <div className="mt-10">
-          <h2 className="text-2xl font-bold text-gray-800 mb-4">Listado de Empresas</h2>
+          <h2 className="text-2xl font-bold text-gray-800 mb-4">Listado de empresas</h2>
           <div className="bg-white shadow overflow-hidden sm:rounded-md">
             <ul className="divide-y divide-gray-200">
               {empresas.map((emp) => (

@@ -32,7 +32,7 @@ export const EmpresaForm: React.FC<EmpresaFormProps> = ({ onSuccess }) => {
 
   return (
     <form onSubmit={handleSubmit} className="bg-white shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4">
-      <h3 className="text-xl font-bold text-gray-800 mb-6 border-b pb-2">Registrar Nueva Empresa</h3>
+      <h3 className="text-xl font-bold text-gray-800 mb-6 border-b pb-2">Registrar nueva empresa</h3>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <FormField label="NIT" name="nit" value={formData.nit} onChange={handleChange} placeholder="Ej: 900123456" required />

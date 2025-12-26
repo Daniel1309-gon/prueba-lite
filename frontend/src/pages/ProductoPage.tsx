@@ -19,14 +19,14 @@ const ProductoPage = () => {
     <div className="min-h-screen py-10 px-4 sm:px-6 lg:px-8">
       <div className="max-w-4xl mx-auto">
         <h1 className="text-3xl font-extrabold text-gray-900 mb-8 text-center">
-          Gestión de Productos
+          Gestión de productos
         </h1>
 
         {isAdmin() && <ProductoForm onSuccess={cargarProductos} />}
 
         <div className="mt-10">
           <h2 className="text-2xl font-bold text-gray-800 mb-4">
-            Inventario Actual
+            Inventario actual
           </h2>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {productos.map((prod) => (

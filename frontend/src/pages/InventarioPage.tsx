@@ -39,7 +39,6 @@ const InventarioPage = () => {
         <h1 className="text-3xl font-extrabold text-gray-900 mb-6 text-center">Reporte de Inventario</h1>
         
         <div className="space-y-8">
-            {/* Opción 1: Descargar Directa */}
             <div className="bg-blue-50 p-6 rounded-md border border-blue-100">
                 <h3 className="text-lg font-medium text-blue-900 mb-2">Descarga Directa</h3>
                 <p className="text-sm text-blue-700 mb-4">Obtén el reporte completo de productos en formato PDF.</p>
@@ -50,7 +49,6 @@ const InventarioPage = () => {
 
             <hr className="border-gray-200" />
 
-            {/* Opción 2: Enviar por Correo */}
             <div className="bg-green-50 p-6 rounded-md border border-green-100">
                 <h3 className="text-lg font-medium text-green-900 mb-2">Enviar por Correo</h3>
                 <p className="text-sm text-green-700 mb-4">Enviaremos el PDF adjunto a la dirección que indiques.</p>
@@ -65,7 +63,7 @@ const InventarioPage = () => {
                         onChange={(e) => setEmail(e.target.value)}
                         required
                     />
-                    <Button type="submit" disabled={loading} style={{backgroundColor: '#059669'}}>
+                    <Button type="submit" disabled={loading} style={{backgroundColor: '#059669', cursor: loading ? 'not-allowed' : 'pointer'}}>
                         {loading ? 'Enviando...' : 'Enviar PDF'}
                     </Button>
                 </form>

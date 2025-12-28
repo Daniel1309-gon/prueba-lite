@@ -6,7 +6,7 @@ class Empresa(models.Model):
     direccion = models.CharField(max_length=200, verbose_name="Dirección")
     telefono = models.CharField(max_length=15, verbose_name="Teléfono")
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.nombre} ({self.nit})"
 
     class Meta:

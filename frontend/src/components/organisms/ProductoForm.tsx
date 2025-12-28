@@ -113,10 +113,7 @@ export const ProductoForm: React.FC<ProductoFormProps> = ({ onSuccess }) => {
       <div className="mb-4">
         <Label htmlFor="caracteristicas">Características</Label>
         <div className="flex justify-between items-end mb-1">
-          <Button
-            onClick={handleGenerateAI}
-            disabled={generating}
-          >
+          <Button onClick={handleGenerateAI} disabled={generating}>
             {generating ? "Generando" : "Generar con Gemini"}
           </Button>
         </div>

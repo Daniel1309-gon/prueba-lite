@@ -12,7 +12,7 @@ class Producto(models.Model):
     
     empresa = models.ForeignKey(Empresa, on_delete=models.CASCADE, related_name='productos')
 
-    def __str__(self):
+    def __str__(self) -> str:
         return f"{self.nombre} ({self.codigo})"
 
     class Meta:

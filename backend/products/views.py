@@ -15,6 +15,7 @@ from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter, landscape
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
+from django.conf import settings
 
 class ProductoViewSet(viewsets.ModelViewSet):
     queryset = Producto.objects.all()
@@ -93,7 +94,7 @@ class ProductoViewSet(viewsets.ModelViewSet):
             email = EmailMessage(
                 'Reporte de Inventario de Productos',
                 'Adjunto encontrarás el reporte de inventario de productos.',
-                'noreply@pruebalite.com',
+                settings.DEFAULT_FROM_EMAIL,
                 [email_destino],
             )
             email.attach('inventario_productos.pdf', buffer.getvalue(), 'application/pdf')
@@ -102,6 +103,7 @@ class ProductoViewSet(viewsets.ModelViewSet):
                 email.send()
                 return Response({'mensaje': 'Correo enviado exitosamente.'})
             except Exception as e:
+                print(e)
                 return Response({'error': f'Error al enviar el correo: {str(e)}'}, status=500)
     
     @action(detail=False, methods=['post'], url_path='generar_descripcion')

@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'corsheaders',
     'companies',
     'products',
-    'lite_dominio'
+    'lite_dominio',
+    'drf_spectacular',
 ]
 
 MIDDLEWARE = [
@@ -139,7 +140,17 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticatedOrReadOnly',
     ],
+    'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
+
+SPECTACULAR_SETTINGS = {
+    'TITLE': 'Lite Thinking API',
+    'DESCRIPTION': 'API para la gestión de productos y empresas en Lite Thinking.',
+    'VERSION': '1.0.0',
+    'SERVE_INCLUDE_SCHEMA': False,
+    'COMPONENT_SPLIT_REQUEST': True,
+}
+
 
 
 

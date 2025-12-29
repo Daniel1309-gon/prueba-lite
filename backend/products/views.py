@@ -16,11 +16,35 @@ from reportlab.lib.pagesizes import letter, landscape
 from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Spacer
 from django.conf import settings
+from drf_spectacular.utils import extend_schema_view, extend_schema, OpenApiParameter
 
 class ProductoViewSet(viewsets.ModelViewSet):
     queryset = Producto.objects.all()
     serializer_class = ProductoSerializer
     permission_classes = [IsAuthenticated, IsAdminOrReadOnly]
+
+    @extend_schema(
+        summary="Descargar PDF de inventario de productos",
+        description="Genera y descarga un PDF con el inventario de productos.",
+        request={
+            'application/json': {
+                'type': 'object',
+                'properties': {
+                    'email': {
+                        'type': 'string',
+                        'format': 'email',
+                        'description': 'Si se envía llegará el PDF al correo indicado.'
+                    }
+                },
+            }
+        },
+            responses={
+                200: {
+                    'type': 'file/pdf',
+                    'description': 'Archivo PDF generado con el inventario de productos.'
+                },
+        }
+    )
 
     @action(detail=False, methods=['get', 'post'], url_path='inventario_pdf')
     def descargar_inventario(self, request):
@@ -106,6 +130,7 @@ class ProductoViewSet(viewsets.ModelViewSet):
                 print(e)
                 return Response({'error': f'Error al enviar el correo: {str(e)}'}, status=500)
     
+
     @action(detail=False, methods=['post'], url_path='generar_descripcion')
     def generar_descripcion(self, request):
         nombre_producto  = request.data.get('nombre')
@@ -140,3 +165,4 @@ class ProductoViewSet(viewsets.ModelViewSet):
                 return Response({'error': f'Error al conectar con Gemini: {str(e)}'}, status=500)
         
         return Response({'error': 'La clave de API de Gemini no está configurada.'}, status=500)
+    

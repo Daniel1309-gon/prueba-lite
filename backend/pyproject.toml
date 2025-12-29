@@ -21,7 +21,8 @@ dependencies = [
     "markdown (>=3.10,<4.0)",
     "pydantic (>=2.12.5,<3.0.0)",
     "tzdata (>=2025.3,<2026.0)",
-    "lite-dominio @ file:../dominio"
+    "lite-dominio @ file:../dominio",
+    "drf-spectacular (>=0.29.0,<0.30.0)"
 ]
 
 

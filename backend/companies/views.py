@@ -1,5 +1,5 @@
 from rest_framework import viewsets
-from .models import Empresa
+from lite_dominio.models import Empresa
 from .serializers import EmpresaSerializer
 from .permissions import IsAdminOrReadOnly
 from rest_framework.permissions import IsAuthenticated

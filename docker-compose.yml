@@ -21,12 +21,16 @@ services:
 
   # Backend Django (Con Poetry)
   backend:
-    build: ./backend
+    
+    build: 
+      context: .
+      dockerfile: backend/Dockerfile
     # Nota: No necesitamos 'poetry run' aquí porque configuramos el Dockerfile
     # para instalar las librerías en el sistema global.
     command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
     volumes:
-      - ./backend:/app
+      - ./backend:/app/backend
+      - ./dominio:/app/dominio
     ports:
       - "8000:8000"
     depends_on:

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'companies',
     'products',
+    'lite_dominio'
 ]
 
 MIDDLEWARE = [

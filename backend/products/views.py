@@ -1,5 +1,5 @@
 from rest_framework import viewsets
-from .models import Producto
+from lite_dominio.models import Producto
 from .serializers import ProductoSerializer
 from companies.permissions import IsAdminOrReadOnly
 from rest_framework.permissions import IsAuthenticated

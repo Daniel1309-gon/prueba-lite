@@ -414,6 +414,23 @@ files = [
 all = ["flake8 (>=7.1.1)", "mypy (>=1.11.2)", "pytest (>=8.3.2)", "ruff (>=0.6.2)"]
 
 [[package]]
+name = "lite-dominio"
+version = "0.1.0"
+description = "capa de dominio de prueba con lite thinking"
+optional = false
+python-versions = ">=3.12,<4.0"
+groups = ["main"]
+files = []
+develop = true
+
+[package.dependencies]
+django = ">=6.0,<7.0"
+
+[package.source]
+type = "directory"
+url = "../dominio"
+
+[[package]]
 name = "markdown"
 version = "3.10"
 description = "Python implementation of John Gruber's Markdown."
@@ -1059,4 +1076,4 @@ files = [
 [metadata]
 lock-version = "2.1"
 python-versions = ">=3.12,<4.0"
-content-hash = "8930bb19fd922268fd6e4d33492aad3402b7857f4f2fe3b073ce44d60808bbf3"
+content-hash = "da5450929982c428533ab64581a4e79cb2bf6dbeeecd61cbf811c5cef085d622"

@@ -30,34 +30,40 @@
 # Usamos una imagen base ligera de Python
 FROM python:3.12-slim
 
-# Evita archivos .pyc y buffer de salida
 ENV PYTHONDONTWRITEBYTECODE=1
 ENV PYTHONUNBUFFERED=1
-
-# Desactiva la creación de venv de Poetry (no es necesario dentro del contenedor)
 ENV POETRY_VIRTUALENVS_CREATE=false
 
+# 1. Creamos una carpeta base para todo el proyecto
 WORKDIR /app
 
-# Instalar dependencias del sistema necesarias para psycopg2 y reportlab
+# 2. Instalamos dependencias del sistema
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential \
     libpq-dev \
     && rm -rf /var/lib/apt/lists/*
 
-# Instalar Poetry
 RUN pip install --no-cache-dir poetry
 
-# Copiar archivos de configuración primero (para aprovechar caché de Docker)
-COPY pyproject.toml poetry.lock /app/
+# 3. Copiamos PRIMERO el dominio (porque el backend depende de él)
+#    Copiamos todo lo de dominio a /app/dominio
+COPY dominio /app/dominio
 
-# Instalar dependencias (sin interacción y sin dev-dependencies si es producción)
+# 4. Copiamos los archivos de configuración del backend
+#    Los ponemos en /app/backend
+COPY backend/pyproject.toml backend/README.md* /app/backend/
+
+# 5. Cambiamos el directorio de trabajo al backend para instalar
+WORKDIR /app/backend
+
+# 6. Instalamos. 
+#    Como estamos en /app/backend, la ruta "../domain" del pyproject.toml
+#    apuntará correctamente a /app/domain que copiamos en el paso 3.
 RUN poetry install --no-interaction --no-ansi --no-root
 
-# Copiar el resto del código
-COPY . /app/
+# 7. Copiamos el resto del código del backend
+COPY backend /app/backend
 
 EXPOSE 8000
 
-# Comando por defecto
 CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

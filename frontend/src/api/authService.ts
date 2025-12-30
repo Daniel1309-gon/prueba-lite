@@ -1,7 +1,7 @@
 import client from "./client";
 
 export const login = async (username: string, password: string) => {
-  const response = await client.post("/token/", { username, password });
+  const response = await client.post("/auth/", { username, password });
 
   if (response.data.access) {
     localStorage.setItem("token", response.data.access);

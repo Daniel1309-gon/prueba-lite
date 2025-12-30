@@ -26,7 +26,9 @@ SECRET_KEY = 'django-insecure-*sh#qe(csy^(zs-as531s&q11$o-ra-)m+m^$&teaxxzen)dz6
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['35.238.232.40.sslip.io', 'localhost', '127.0.0.1']
+# CSRF_TRUSTED_ORIGINS es necesario para poder loguearte en el admin con HTTPS
+CSRF_TRUSTED_ORIGINS = ['https://35.238.232.40.sslip.io']
 
 # Application definition
 

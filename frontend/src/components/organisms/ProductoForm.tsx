@@ -150,7 +150,7 @@ export const ProductoForm: React.FC<ProductoFormProps> = ({ onSuccess }) => {
         name="empresa"
         value={formData.empresa}
         onChange={handleChange}
-        options={opcionesEmpresas}
+        items={opcionesEmpresas}
         required
       />
 

@@ -6,19 +6,19 @@ interface FormSelectProps
   extends React.SelectHTMLAttributes<HTMLSelectElement> {
   label: string;
   name: string;
-  options: { value: string | number; label: string }[];
+  items: { value: string | number; label: string }[];
 }
 
 export const FormSelect: React.FC<FormSelectProps> = ({
   label,
   name,
-  options,
+  items,
   ...props
 }) => {
   return (
     <div className="mb-4">
       <Label htmlFor={name}>{label}</Label>
-      <Select id={name} name={name} options={options} {...props} />
+      <Select id={name} name={name} items={items} {...props} />
     </div>
   );
 };
